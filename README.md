@@ -9,6 +9,5 @@ an output file.
 ### Possible Improvemenets
 Rather than holding the entire contents of each file in memory, it would be more efficient
 to process each line as it is being read. That way only the matched lines have to be stored.  
-Better yet, each matched line could be written directly to the output file while the next line
-is being processed. Since the jvm can handle disk reads/writes in parallel to the main thread,
-this would allow for optimal running time and memory usage.
+Better yet, each matched line could be asynchronously written to the output file. That way,
+no running time is lost waiting for writes to complete, and total memory usage is minimized.
