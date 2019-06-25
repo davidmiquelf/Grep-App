@@ -6,3 +6,9 @@ an output file.
  regex: Regular expression  
  rootPath: The path of the directory being searched.  
  outFile: The file where the matched lines are written.
+### Possible Improvemenets
+Rather than holding the entire contents of each file in memory, it would be more efficient
+to process each line as it is being read. That way only the matched lines have to be stored.  
+Better yet, each matched line could be written directly to the output file while the next line
+is being processed. Since the jvm should handle disk io commands seprately from the main thread,
+this allows for optimal running time while minimizing memory usage.
