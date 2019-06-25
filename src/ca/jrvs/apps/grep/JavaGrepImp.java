@@ -3,7 +3,6 @@ package ca.jrvs.apps.grep;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 public class JavaGrepImp implements JavaGrep {
     private String regex;

@@ -8,13 +8,13 @@ public interface JavaGrep {
 
     /**
      * Top Level Search Workflow
-     * @throws IOException
+     * @throws IOException when reads or writes fail.
      */
     void process() throws IOException;
 
     /**
      * Get all the files of the given directory.
-     * @param rootDir
+     * @param rootDir the directory being searched.
      * @return files under rootDir
      */
     List<File> listFiles(String rootDir);
@@ -23,7 +23,7 @@ public interface JavaGrep {
     /**
      * Read a file and return all the lines.
      *
-     * @param inputFile
+     * @param inputFile the file being read.
      * @return lines
      * @throws IllegalArgumentException if inputFile does not exist.
      */
@@ -31,8 +31,8 @@ public interface JavaGrep {
 
     /**
      * Check if line contains the regex pattern.
-     * @param line
-     * @return
+     * @param line the string being checked.
+     * @return true when the line matches the regex.
      */
     Boolean containsPattern(String line);
 
@@ -43,16 +43,22 @@ public interface JavaGrep {
      * @throws IOException if write failed
      */
     void writeToFile(List<String> lines) throws IOException;
-
+    
+    @SuppressWarnings("unused")
     String getRootPath();
 
+    @SuppressWarnings("unused")
     void setRootPath(String rootPath);
 
+    @SuppressWarnings("unused")
     String getRegex();
 
+    @SuppressWarnings("unused")
     void setRegex(String regex);
 
+    @SuppressWarnings("unused")
     String getOutFile();
 
+    @SuppressWarnings("unused")
     void setOutFile(String outfile);
 }
