@@ -3,7 +3,7 @@ package ca.jrvs.apps.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Main {
+public class jdbcApp {
     public static void main(String[] Args) {
 
         try (Connection conn = DriverManager.getConnection
