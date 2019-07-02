@@ -67,6 +67,7 @@ public class JavaGrepImp implements JavaGrep {
         while ((line = br.readLine()) != null) {
             lines.add(line);
         }
+        br.close();
         return lines;
 
     }
