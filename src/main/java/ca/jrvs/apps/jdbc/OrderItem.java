@@ -58,12 +58,11 @@ public class OrderItem {
   }
 
   public String toString() {
-    String s = "\n  Name: " + getProductName();
-    s += "\n  Code: " + getProductCode();
-    s += "\n  Variety : " + getProductVariety();
-    s += "\n  Size: " + getProductSize();
-    s += "\n  rice: " + getProductPrice();
-    s += "\n  Quantity: " + getQuantity() + "\n";
-    return s;
+    return "\n  Name: " + getProductName()
+        + "\n  Code: " + getProductCode()
+        + "\n  Variety : " + getProductVariety()
+        + "\n  Size: " + getProductSize()
+        + "\n  rice: " + getProductPrice()
+        + "\n  Quantity: " + getQuantity() + "\n";
   }
 }

@@ -92,7 +92,6 @@ public class CustomerDAO extends DataAccessObject<Customer> {
       statement.setString(9, Long.toString(dto.getId()));
       statement.executeUpdate();
     } catch (SQLException e) {
-      e.printStackTrace();
       throw new RuntimeException(e);
     }
     return findById(dto.getId());
@@ -119,7 +118,6 @@ public class CustomerDAO extends DataAccessObject<Customer> {
         }
       }
     } catch (SQLException e) {
-      e.printStackTrace();
       throw new RuntimeException(e);
     }
     return dto;
@@ -130,7 +128,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
     try (PreparedStatement statement = this.connection.prepareStatement(DELETE)) {
       statement.setLong(1, id);
       statement.executeUpdate();
-    } catch (Exception e) {
+    } catch (SQLException e) {
       throw new RuntimeException(e);
     }
   }

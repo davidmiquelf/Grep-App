@@ -2,6 +2,7 @@ package ca.jrvs.apps.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class jdbcApp {
 
@@ -22,22 +23,25 @@ public class jdbcApp {
             "postgres",
             "password"
         )) {
+      //Testing CustomerDAO:
       CustomerDAO cdao = new CustomerDAO(conn);
 
       //Insert david into the database, get his Id, then find his row in the database.
-      //Customer c_db = cdao.findById(cdao.create(c).getId());
+      Customer c_db = cdao.findById(cdao.create(c).getId());
 
-      //System.out.println(c_db.toString());
+      System.out.println(c_db.toString());
 
-      //cdao.delete(c_db.getId());
+      //Delete David from the database
+      cdao.delete(c_db.getId());
 
+      //Testing OrderDAO:
       OrderDAO odao = new OrderDAO(conn);
 
       Order o = odao.findById(1001);
 
       System.out.println(o.toString());
 
-    } catch (Exception e) {
+    } catch (SQLException e) {
       e.printStackTrace();
     }
 
