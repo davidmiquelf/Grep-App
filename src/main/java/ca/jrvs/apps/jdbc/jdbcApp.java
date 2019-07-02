@@ -22,14 +22,20 @@ public class jdbcApp {
             "postgres",
             "password"
         )) {
-      CustomerDAO dao = new CustomerDAO(conn);
+      CustomerDAO cdao = new CustomerDAO(conn);
 
       //Insert david into the database, get his Id, then find his row in the database.
-      Customer c_db = dao.findById(dao.create(c).getId());
+      //Customer c_db = cdao.findById(cdao.create(c).getId());
 
-      System.out.println(c_db.toString());
+      //System.out.println(c_db.toString());
 
-      dao.delete(c_db.getId());
+      //cdao.delete(c_db.getId());
+
+      OrderDAO odao = new OrderDAO(conn);
+
+      Order o = odao.findById(1001);
+
+      System.out.println(o.toString());
 
     } catch (Exception e) {
       e.printStackTrace();
