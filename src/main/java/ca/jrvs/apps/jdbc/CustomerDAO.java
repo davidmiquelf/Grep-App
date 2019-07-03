@@ -72,7 +72,6 @@ public class CustomerDAO extends DataAccessObject<Customer> {
         customers.add(c);
       }
     } catch (SQLException e) {
-      e.printStackTrace();
       throw new RuntimeException(e);
     }
     return customers;
