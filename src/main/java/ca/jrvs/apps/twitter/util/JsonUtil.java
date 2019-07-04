@@ -1,4 +1,4 @@
-package ca.jrvs.apps.twitter;
+package ca.jrvs.apps.twitter.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.IOException;
 
-public class JsonParser {
+public class JsonUtil {
 
   private static ObjectMapper mapper = new ObjectMapper()
       .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -18,7 +18,7 @@ public class JsonParser {
    * @param object input object
    * @return JSON String
    */
-  public static String toJson(
+  public static String toJsonFromObject(
       Object object, boolean prettyJson,
       boolean includeNullValues) throws JsonProcessingException {
 

@@ -1,8 +1,8 @@
 package ca.jrvs.apps.twitter.dao;
 
-import ca.jrvs.apps.twitter.JsonParser;
 import ca.jrvs.apps.twitter.dao.helper.ApacheHttpHelper;
 import ca.jrvs.apps.twitter.dto.Tweet;
+import ca.jrvs.apps.twitter.util.JsonUtil;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -29,7 +29,7 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
       URI uri = new URI("https://api.twitter.com/1.1/statuses/show.json?id=" + id);
       HttpResponse response = helper.httpGet(uri);
       String json = EntityUtils.toString(response.getEntity());
-      tweet = JsonParser.toObjectFromJson(json, Tweet.class);
+      tweet = JsonUtil.toObjectFromJson(json, Tweet.class);
 
     } catch (URISyntaxException e) {
       e.printStackTrace();

@@ -1,7 +1,7 @@
 package ca.jrvs.apps.twitter.dao.helper;
 
-import ca.jrvs.apps.twitter.JsonParser;
 import ca.jrvs.apps.twitter.dto.Tweet;
+import ca.jrvs.apps.twitter.util.JsonUtil;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,7 +12,7 @@ public class ApacheHttpHelperIntTest {
 
   public static void main(String[] Args) {
     ApacheHttpHelper ahh = new ApacheHttpHelper();
-    JsonParser parser = new JsonParser();
+    JsonUtil parser = new JsonUtil();
     try {
       System.out.println("test POST");
       ahh.httpPost(
@@ -30,7 +30,7 @@ public class ApacheHttpHelperIntTest {
 
       Tweet[] tweets =
           parser.toObjectFromJson(json, Tweet[].class);
-      System.out.println(parser.toJson(tweets, true, true));
+      System.out.println(parser.toJsonFromObject(tweets, true, true));
 
       String idstr = tweets[0].id_str;
 

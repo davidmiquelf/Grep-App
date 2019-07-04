@@ -1,5 +1,5 @@
 package ca.jrvs.apps.twitter;
 
-public class TwitterApp {
+public class TwitterCLIRunner {
 
 }
