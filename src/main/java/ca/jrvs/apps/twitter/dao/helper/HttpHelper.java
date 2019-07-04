@@ -6,7 +6,7 @@ import org.apache.http.entity.StringEntity;
 
 public interface HttpHelper {
 
-  HttpResponse httpsPost(URI uri);
+  HttpResponse httpPost(URI uri);
 
   HttpResponse httpPost(URI uri, StringEntity stringEntity);
 

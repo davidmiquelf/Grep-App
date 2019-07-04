@@ -1,17 +1,16 @@
 package ca.jrvs.apps.twitter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.IOException;
 
 public class JsonParser {
 
-  private static ObjectMapper mapper;
+  private static ObjectMapper mapper = new ObjectMapper()
+      .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-  public JsonParser() {
-    mapper = new ObjectMapper();
-  }
 
   /**
    * Convert a java object to JSON string

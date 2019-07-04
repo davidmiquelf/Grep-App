@@ -28,8 +28,8 @@
 			<version>1.2.1.2</version>
 		</dependency>
 		<dependency>
-			<artifactId>signpost-commonshttp4</artifactId>
 			<groupId>oauth.signpost</groupId>
+			<artifactId>signpost-commonshttp4</artifactId>
 			<version>1.2.1.2</version>
 		</dependency>
 		<!--Jackson JSON-->
