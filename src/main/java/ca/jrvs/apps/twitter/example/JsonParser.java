@@ -1,15 +1,12 @@
-package ca.jrvs.apps.twitter.util;
+package ca.jrvs.apps.twitter.example;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.IOException;
-import org.apache.http.HttpResponse;
-import org.apache.http.util.EntityUtils;
 
-public class JsonUtil {
+public class JsonParser {
 
   private static ObjectMapper mapper = new ObjectMapper()
       .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -33,9 +30,9 @@ public class JsonUtil {
     }
 
     if (includeNullValues) {
-      mapper.setSerializationInclusion(Include.ALWAYS);
+      mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
     } else {
-      mapper.setSerializationInclusion(Include.NON_NULL);
+      mapper.enable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
     }
 
     return mapper.writeValueAsString(object);
@@ -52,15 +49,6 @@ public class JsonUtil {
   public static <T> T toObjectFromJson(
       String json, Class clazz) throws IOException {
     return (T) mapper.readValue(json, clazz);
-  }
-
-  public static String toJsonFromResponse(HttpResponse response) throws IOException {
-    return EntityUtils.toString(response.getEntity());
-  }
-
-  public static <T> T toObjectFromResponse(
-      HttpResponse response, Class clazz) throws IOException {
-    return toObjectFromJson(toJsonFromResponse(response), clazz);
   }
 
 }

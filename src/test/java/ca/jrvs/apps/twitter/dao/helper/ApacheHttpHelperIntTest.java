@@ -14,12 +14,13 @@ public class ApacheHttpHelperIntTest {
     ApacheHttpHelper ahh = new ApacheHttpHelper();
     JsonUtil parser = new JsonUtil();
     try {
+      /*
       System.out.println("test POST");
       ahh.httpPost(
           new URI("https://api.twitter.com/1.1/statuses/update.json?status="
               + "This%20is%20a%20test%20tweet")
       );
-
+  */
       System.out.println("test GET");
       HttpResponse response2 = ahh.httpGet(
           new URI("https://api.twitter.com/1.1/statuses/"
@@ -32,8 +33,9 @@ public class ApacheHttpHelperIntTest {
           parser.toObjectFromJson(json, Tweet[].class);
       System.out.println(parser.toJsonFromObject(tweets, true, true));
 
-      String idstr = tweets[0].id_str;
-
+      String idstr = tweets[0].id;
+      System.out.println(idstr);
+/*
       System.out.println("test Delete");
 
       HttpResponse response3 = ahh.httpPost(
@@ -41,7 +43,7 @@ public class ApacheHttpHelperIntTest {
       );
 
       System.out.println(response3.getStatusLine());
-
+*/
     } catch (URISyntaxException e) {
       e.printStackTrace();
     } catch (IOException e) {
