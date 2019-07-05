@@ -4,13 +4,22 @@ import ca.jrvs.apps.twitter.dao.helper.ApacheHttpHelper;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import ca.jrvs.apps.twitter.util.JsonUtil;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidParameterException;
 import org.apache.http.HttpResponse;
 
 public class TwitterRestDao implements CrdRepository<Tweet, String> {
 
+  private static final String API_BASE_URI = "https://api.twitter.com";
+  private static final String POST_PATH = "/1.1/statuses/update.json?status=";
+  private static final String SHOW_PATH = "/1.1/statuses/show.json?id=";
+  private static final String DELETE_PATH = "/1.1/statuses/destroy/";
+  private static final String AND_FLAG = "&";
+  private static final String EQ_FLAG = "=";
   private ApacheHttpHelper helper;
 
   public TwitterRestDao() {
@@ -18,22 +27,28 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
   }
 
   @Override
-  public Tweet save(Tweet entity) {
-    return null;
+  public Tweet create(Tweet tweet) {
+    Tweet t = null;
+    try {
+      URI uri = getPostUri(tweet);
+      HttpResponse response = helper.httpPost(uri);
+      t = JsonUtil.toObjectFromResponse(response, Tweet.class);
+    } catch (URISyntaxException | UnsupportedEncodingException e) {
+      System.out.println("Invalid status text. Please use normal characters.");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return t;
   }
 
   @Override
   public Tweet findById(String id) {
     Tweet tweet = null;
     try {
-      validateIdString(id);
-      URI uri = new URI("https://api.twitter.com/1.1/statuses/show.json?id=" + id);
+      URI uri = getFindURI(id);
       HttpResponse response = helper.httpGet(uri);
-      String json = JsonUtil.toJsonFromResponse(response);
-      tweet = JsonUtil.toObjectFromJson(json, Tweet.class);
+      tweet = JsonUtil.toObjectFromResponse(response, Tweet.class);
 
-    } catch (URISyntaxException e) {
-      e.printStackTrace();
     } catch (IOException e) {
       e.printStackTrace();
     } catch (InvalidParameterException e) {
@@ -46,25 +61,63 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
   public Tweet deleteById(String id) {
     Tweet tweet;
     try {
-      validateIdString(id);
-      HttpResponse response = helper.httpPost(
-          new URI("https://api.twitter.com/1.1/statuses/destroy/" + id + ".json")
-      );
+      URI uri = getDeleteURI(id);
+      HttpResponse response = helper.httpPost(uri);
       tweet = JsonUtil.toObjectFromResponse(response, Tweet.class);
     } catch (IOException e) {
-      throw new RuntimeException("failed to convert response to tweet.", e);
-    } catch (URISyntaxException e) {
-      throw new RuntimeException("id validation failed, or API changed.", e);
+      throw new RuntimeException("Failed to convert response to tweet.", e);
     }
     return tweet;
   }
 
   private void validateIdString(String id) throws InvalidParameterException {
+    if (id == null) {
+      throw new InvalidParameterException("Cannot find Id.");
+    }
     id.chars()
         .filter(c -> (c < '0' || c > '9'))
+        .limit(1)
         .forEach(c -> {
-          throw new InvalidParameterException("Invalid Id String.");
+          throw new InvalidParameterException("Invalid Id String: " + id);
         });
+  }
 
+  private URI getPostUri(Tweet tweet) throws URISyntaxException, UnsupportedEncodingException {
+    String status = URLEncoder.encode(tweet.text, StandardCharsets.UTF_8.name());
+    String uriString = API_BASE_URI + POST_PATH + status;
+
+    if (tweet.coordinates != null) {
+      uriString = appendURIParam(uriString, "display_coordinates", "true");
+      uriString = appendURIParam(uriString, "lat", tweet.getLong().toString());
+      uriString = appendURIParam(uriString, "long", tweet.getLat().toString());
+    }
+    URI uri = new URI(uriString);
+    return uri;
+  }
+
+  private URI getFindURI(String id) {
+    validateIdString(id);
+    URI uri = null;
+    try {
+      uri = new URI(API_BASE_URI + SHOW_PATH + id);
+    } catch (URISyntaxException e) {
+      e.printStackTrace();
+    }
+    return uri;
+  }
+
+  private URI getDeleteURI(String id) {
+    validateIdString(id);
+    URI uri = null;
+    try {
+      uri = new URI(API_BASE_URI + DELETE_PATH + id + ".json");
+    } catch (URISyntaxException e) {
+      e.printStackTrace();
+    }
+    return uri;
+  }
+
+  private String appendURIParam(String uri, String param, String val) {
+    return uri + AND_FLAG + param + EQ_FLAG + val;
   }
 }

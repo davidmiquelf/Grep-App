@@ -7,20 +7,20 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
+import org.junit.Test;
 
 public class ApacheHttpHelperIntTest {
 
-  public static void main(String[] Args) {
+  @Test
+  public void testPostGetDelete() {
     ApacheHttpHelper ahh = new ApacheHttpHelper();
     JsonUtil parser = new JsonUtil();
     try {
-      /*
       System.out.println("test POST");
       ahh.httpPost(
           new URI("https://api.twitter.com/1.1/statuses/update.json?status="
               + "This%20is%20a%20test%20tweet")
       );
-  */
       System.out.println("test GET");
       HttpResponse response2 = ahh.httpGet(
           new URI("https://api.twitter.com/1.1/statuses/"
@@ -35,7 +35,6 @@ public class ApacheHttpHelperIntTest {
 
       String idstr = tweets[0].id;
       System.out.println(idstr);
-/*
       System.out.println("test Delete");
 
       HttpResponse response3 = ahh.httpPost(
@@ -43,7 +42,6 @@ public class ApacheHttpHelperIntTest {
       );
 
       System.out.println(response3.getStatusLine());
-*/
     } catch (URISyntaxException e) {
       e.printStackTrace();
     } catch (IOException e) {

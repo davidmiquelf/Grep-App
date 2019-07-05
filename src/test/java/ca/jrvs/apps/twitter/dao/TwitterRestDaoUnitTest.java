@@ -13,10 +13,11 @@ public class TwitterRestDaoUnitTest {
   @Before
   public void before() {
     dao = new TwitterRestDao();
+
   }
 
   @Test
-  public void postTweet() {
+  public void create() {
   }
 
   @Test

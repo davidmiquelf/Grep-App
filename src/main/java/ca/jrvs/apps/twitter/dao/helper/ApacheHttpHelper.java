@@ -16,13 +16,17 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 public class ApacheHttpHelper implements HttpHelper {
 
-  private static String CONSUMER_KEY = "COylz9pKLIxb1jT2ktViQfbNw";
-  private static String CONSUMER_SECRET = "4jwFcnXd1aodWALIDxKnBVhpLTX1sLZ796PUtVlD1ENx9xcKgE";
-  private static String ACCESS_TOKEN = "1094024554438164480-DBJhcq0v7svOZ8d2mAgNo5c7BQa1ne";
-  private static String TOKEN_SECRET = "KbBXNolx2SaJHiSIfAT5QTpEzRMQ1fpQoIFFNtBG8ZW3R";
+  private static String CONSUMER_KEY = "";
+  private static String CONSUMER_SECRET = "";
+  private static String ACCESS_TOKEN = "";
+  private static String TOKEN_SECRET = "";
   private OAuthConsumer consumer;
 
   public ApacheHttpHelper() {
+    CONSUMER_KEY = System.getenv("CONSUMER_KEY");
+    CONSUMER_SECRET = System.getenv("CONSUMER_SECRET");
+    ACCESS_TOKEN = System.getenv("ACCESS_TOKEN");
+    TOKEN_SECRET = System.getenv("TOKEN_SECRET");
     this.consumer = new CommonsHttpOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
     this.consumer.setTokenWithSecret(ACCESS_TOKEN, TOKEN_SECRET);
   }
