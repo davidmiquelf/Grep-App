@@ -29,24 +29,9 @@ public class Tweet {
     this.text = text;
     if (longitude != null && latitude != null) {
       this.coordinates = new Coordinates();
-      coordinates.coordinates[0] = longitude;
-      coordinates.coordinates[1] = latitude;
+      Double[] c = {longitude, latitude};
+      coordinates.coordinates = c;
     }
-  }
-
-  public Double getLong() {
-    return coordinates.coordinates[0];
-  }
-
-  public Double getLat() {
-    return coordinates.coordinates[1];
-  }
-
-  public void setCoordinates(Double[] coordinates) {
-    if (coordinates == null) {
-      this.coordinates = new Coordinates();
-    }
-    this.coordinates.coordinates = coordinates;
   }
 }
 

@@ -1,6 +1,7 @@
 package ca.jrvs.apps.twitter.dao;
 
 import ca.jrvs.apps.twitter.dao.helper.ApacheHttpHelper;
+import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import ca.jrvs.apps.twitter.util.JsonUtil;
 import java.io.IOException;
@@ -20,10 +21,14 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
   private static final String DELETE_PATH = "/1.1/statuses/destroy/";
   private static final String AND_FLAG = "&";
   private static final String EQ_FLAG = "=";
-  private ApacheHttpHelper helper;
+  private HttpHelper helper;
+
+  public TwitterRestDao(HttpHelper helper) {
+    this.helper = helper;
+  }
 
   public TwitterRestDao() {
-    helper = new ApacheHttpHelper();
+    this.helper = new ApacheHttpHelper();
   }
 
   @Override
@@ -49,10 +54,8 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
       HttpResponse response = helper.httpGet(uri);
       tweet = JsonUtil.toObjectFromResponse(response, Tweet.class);
 
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (InvalidParameterException e) {
-      System.out.println(e.getMessage());
+    } catch (IOException | InvalidParameterException e) {
+      throw new RuntimeException("Invalid id string.", e);
     }
     return tweet;
   }
@@ -88,8 +91,8 @@ public class TwitterRestDao implements CrdRepository<Tweet, String> {
 
     if (tweet.coordinates != null) {
       uriString = appendURIParam(uriString, "display_coordinates", "true");
-      uriString = appendURIParam(uriString, "lat", tweet.getLong().toString());
-      uriString = appendURIParam(uriString, "long", tweet.getLat().toString());
+      uriString = appendURIParam(uriString, "long", tweet.coordinates.coordinates[0].toString());
+      uriString = appendURIParam(uriString, "lat", tweet.coordinates.coordinates[1].toString());
     }
     URI uri = new URI(uriString);
     return uri;
