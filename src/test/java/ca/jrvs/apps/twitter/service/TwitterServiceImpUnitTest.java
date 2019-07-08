@@ -53,13 +53,13 @@ public class TwitterServiceImpUnitTest {
   }
 
   @Test
-  public void postTweet() throws JsonProcessingException {
+  public void apostTweet() throws JsonProcessingException {
     service.postTweet("This is a tweet", 60.0, 60.0);
     assertTweet();
   }
 
   @Test
-  public void showTweet() throws JsonProcessingException {
+  public void bshowTweet() throws JsonProcessingException {
     service.showTweet("1234");
     assertTweet();
   }
@@ -69,8 +69,6 @@ public class TwitterServiceImpUnitTest {
     String[] ids = {"1", "2", "3"};
     service.deleteTweets(ids);
     verify(dao, times(3)).deleteById(anyString());
-    assertTweet();
-
   }
 
   private void assertTweet() throws JsonProcessingException {

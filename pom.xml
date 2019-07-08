@@ -44,4 +44,32 @@
       <version>2.28.2</version>
     </dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-shade-plugin</artifactId>
+				<executions>
+					<execution>
+						<configuration>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<manifestEntries>
+										<Build-Number>1</Build-Number>
+										<Main-Class>ca.jrvs.apps.twitter.TwitterCLI</Main-Class>
+									</manifestEntries>
+								</transformer>
+							</transformers>
+						</configuration>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+				<groupId>org.apache.maven.plugins</groupId>
+				<version>3.2.1</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>
