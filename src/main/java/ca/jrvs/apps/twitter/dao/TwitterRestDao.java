@@ -1,6 +1,5 @@
 package ca.jrvs.apps.twitter.dao;
 
-import ca.jrvs.apps.twitter.dao.helper.ApacheHttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import ca.jrvs.apps.twitter.util.JsonUtil;
@@ -12,6 +11,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidParameterException;
 import org.apache.http.HttpResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -25,12 +25,9 @@ public class TwitterRestDao implements CrdDao<Tweet, String> {
   private static final String EQ_FLAG = "=";
   private HttpHelper helper;
 
+  @Autowired
   public TwitterRestDao(HttpHelper helper) {
     this.helper = helper;
-  }
-
-  public TwitterRestDao() {
-    this.helper = new ApacheHttpHelper();
   }
 
   @Override

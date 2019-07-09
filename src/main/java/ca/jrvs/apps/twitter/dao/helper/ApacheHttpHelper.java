@@ -1,5 +1,6 @@
 package ca.jrvs.apps.twitter.dao.helper;
 
+import ca.jrvs.apps.twitter.util.StringUtil;
 import java.io.IOException;
 import java.net.URI;
 import oauth.signpost.OAuthConsumer;
@@ -18,19 +19,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApacheHttpHelper implements HttpHelper {
 
-  private static String CONSUMER_KEY = "";
-  private static String CONSUMER_SECRET = "";
-  private static String ACCESS_TOKEN = "";
-  private static String TOKEN_SECRET = "";
   private OAuthConsumer consumer;
 
   public ApacheHttpHelper() {
-    CONSUMER_KEY = System.getenv("CONSUMER_KEY");
-    CONSUMER_SECRET = System.getenv("CONSUMER_SECRET");
-    ACCESS_TOKEN = System.getenv("ACCESS_TOKEN");
-    TOKEN_SECRET = System.getenv("TOKEN_SECRET");
-    this.consumer = new CommonsHttpOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
-    this.consumer.setTokenWithSecret(ACCESS_TOKEN, TOKEN_SECRET);
+    String consumerKey = System.getenv("CONSUMER_KEY");
+    String consumerSecret = System.getenv("CONSUMER_SECRET");
+    String accessToken = System.getenv("ACCESS_TOKEN");
+    String tokenSecret = System.getenv("TOKEN_SECRET");
+
+    if (StringUtil.isEmpty(consumerKey, consumerSecret, accessToken, tokenSecret)) {
+      throw new RuntimeException("Unable to detect key and tokens from System env");
+    }
+
+    this.consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
+    this.consumer.setTokenWithSecret(accessToken, tokenSecret);
   }
 
   @Override
