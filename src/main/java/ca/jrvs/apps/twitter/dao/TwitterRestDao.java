@@ -47,7 +47,7 @@ public class TwitterRestDao implements CrdDao<Tweet, String> {
 
   @Override
   public Tweet findById(String id) {
-    Tweet tweet = null;
+    Tweet tweet;
     try {
       URI uri = getFindURI(id);
       HttpResponse response = helper.httpGet(uri);

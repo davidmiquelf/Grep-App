@@ -18,12 +18,12 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile("dev")
-public class ApacheHttpHelper implements HttpHelper {
+@Profile("prod")
+public class JrvsHttpHelper implements HttpHelper {
 
   private OAuthConsumer consumer;
 
-  public ApacheHttpHelper() {
+  public JrvsHttpHelper() {
     String consumerKey = System.getenv("CONSUMER_KEY");
     String consumerSecret = System.getenv("CONSUMER_SECRET");
     String accessToken = System.getenv("ACCESS_TOKEN");

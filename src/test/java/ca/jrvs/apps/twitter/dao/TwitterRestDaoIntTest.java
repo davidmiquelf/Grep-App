@@ -2,6 +2,7 @@ package ca.jrvs.apps.twitter.dao;
 
 import static org.junit.Assert.assertEquals;
 
+import ca.jrvs.apps.twitter.dao.helper.ApacheHttpHelper;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import java.security.InvalidParameterException;
 import org.junit.Before;
@@ -14,7 +15,7 @@ public class TwitterRestDaoIntTest {
 
   @Before
   public void setup() {
-    dao = new TwitterRestDao();
+    dao = new TwitterRestDao(new ApacheHttpHelper());
     Tweet dummy = new Tweet("This is a test tweet");
     tweet = dao.create(dummy);
   }
