@@ -26,10 +26,10 @@ public class ApacheHttpHelper implements HttpHelper {
 
   @Autowired
   public ApacheHttpHelper() {
-    String consumerKey = System.getenv("CONSUMER_KEY");
-    String consumerSecret = System.getenv("CONSUMER_SECRET");
-    String accessToken = System.getenv("ACCESS_TOKEN");
-    String tokenSecret = System.getenv("TOKEN_SECRET");
+    String consumerKey = System.getenv("consumerKey");
+    String consumerSecret = System.getenv("consumerSecret");
+    String accessToken = System.getenv("accessToken");
+    String tokenSecret = System.getenv("tokenSecret");
 
     if (StringUtil.isEmpty(consumerKey, consumerSecret, accessToken, tokenSecret)) {
       throw new RuntimeException("Unable to detect key and tokens from System env");

@@ -14,7 +14,6 @@ public class ApacheHttpHelperIntTest {
   @Test
   public void testPostGetDelete() {
     ApacheHttpHelper ahh = new ApacheHttpHelper();
-    JsonUtil parser = new JsonUtil();
     try {
       System.out.println("test POST");
       ahh.httpPost(
@@ -30,8 +29,8 @@ public class ApacheHttpHelperIntTest {
       String json = EntityUtils.toString(response2.getEntity());
 
       Tweet[] tweets =
-          parser.toObjectFromJson(json, Tweet[].class);
-      System.out.println(parser.toJsonFromObject(tweets, true, true));
+          JsonUtil.toObjectFromJson(json, Tweet[].class);
+      System.out.println(JsonUtil.toJsonFromObject(tweets, true, true));
 
       String idstr = tweets[0].id;
       System.out.println(idstr);

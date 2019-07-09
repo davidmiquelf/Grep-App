@@ -3,6 +3,7 @@ package ca.jrvs.apps.twitter.dao;
 import static org.junit.Assert.assertEquals;
 
 import ca.jrvs.apps.twitter.dao.helper.ApacheHttpHelper;
+import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import java.security.InvalidParameterException;
 import org.junit.Before;
@@ -11,11 +12,13 @@ import org.junit.Test;
 public class TwitterRestDaoIntTest {
 
   private static TwitterRestDao dao;
+  private static HttpHelper helper;
   private Tweet tweet;
 
   @Before
   public void setup() {
-    dao = new TwitterRestDao(new ApacheHttpHelper());
+    helper = new ApacheHttpHelper();
+    dao = new TwitterRestDao(helper);
     Tweet dummy = new Tweet("This is a test tweet");
     tweet = dao.create(dummy);
   }
