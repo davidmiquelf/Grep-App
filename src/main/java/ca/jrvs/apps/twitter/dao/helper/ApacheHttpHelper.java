@@ -14,6 +14,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,7 @@ public class ApacheHttpHelper implements HttpHelper {
 
   private OAuthConsumer consumer;
 
+  @Autowired
   public ApacheHttpHelper() {
     String consumerKey = System.getenv("CONSUMER_KEY");
     String consumerSecret = System.getenv("CONSUMER_SECRET");
