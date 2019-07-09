@@ -10,7 +10,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TwitterServiceImp implements TwitterService {
 
   private CrdDao<Tweet, String> dao;
@@ -59,14 +61,14 @@ public class TwitterServiceImp implements TwitterService {
   public List<Tweet> deleteTweets(String[] ids) {
     return Arrays.stream(ids)
         .map(dao::deleteById)
-            .peek(t -> {
-              try {
-                System.out.println(JsonUtil.toJsonFromObject(t, true, true));
-              } catch (JsonProcessingException e) {
-                System.out.println("Tweet could not be deleted.");
-              }
-            })
-            .collect(Collectors.toList());
+        .peek(t -> {
+          try {
+            System.out.println(JsonUtil.toJsonFromObject(t, true, true));
+          } catch (JsonProcessingException e) {
+            System.out.println("Tweet could not be deleted.");
+          }
+        })
+        .collect(Collectors.toList());
   }
 
   private String getTweetFields(Tweet tweet) {
