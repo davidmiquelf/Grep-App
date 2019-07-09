@@ -1,24 +1,27 @@
 package ca.jrvs.apps.twitter.service;
 
-import ca.jrvs.apps.twitter.dao.CrdRepository;
+import ca.jrvs.apps.twitter.dao.CrdDao;
 import ca.jrvs.apps.twitter.dto.Entities;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import ca.jrvs.apps.twitter.util.JsonUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TwitterServiceImp implements TwitterService {
 
-  private CrdRepository<Tweet, String> dao;
+  private CrdDao<Tweet, String> dao;
 
-  public TwitterServiceImp(CrdRepository dao) {
+  public TwitterServiceImp(CrdDao dao) {
     this.dao = dao;
   }
 
   @Override
-  public void postTweet(String text, Double latitude, Double longitude) {
+  public Tweet postTweet(String text, Double latitude, Double longitude) {
     Tweet tweet;
     if (latitude != null && longitude != null) {
       tweet = new Tweet(text, latitude, longitude);
@@ -32,14 +35,15 @@ public class TwitterServiceImp implements TwitterService {
     } else {
       System.out.println(json);
     }
+    return tweet;
   }
 
-  public void showTweet(String id) {
-    showTweet(id, null);
+  public Tweet showTweet(String id) {
+    return showTweet(id, null);
   }
 
   @Override
-  public void showTweet(String id, String[] fields) {
+  public Tweet showTweet(String id, String[] fields) {
     Tweet tweet = dao.findById(id);
     String json;
     if (fields == null) {
@@ -49,16 +53,21 @@ public class TwitterServiceImp implements TwitterService {
     }
     System.out.println(json);
 
+    return tweet;
   }
 
   @Override
-  public void deleteTweets(String[] ids) {
-    Arrays.stream(ids)
+  public List<Tweet> deleteTweets(String[] ids) {
+    return Arrays.stream(ids)
         .map(dao::deleteById)
-        .forEach(t ->
-            System.out.println(
-                "Deleted " + t.id + " Successfully."
-            ));
+            .peek(t -> {
+              try {
+                System.out.println(JsonUtil.toJsonFromObject(t, true, false));
+              } catch (JsonProcessingException e) {
+                System.out.println("Tweet could not be deleted.");
+              }
+            })
+            .collect(Collectors.toList());
   }
 
   private String getTweetFields(Tweet tweet) {
