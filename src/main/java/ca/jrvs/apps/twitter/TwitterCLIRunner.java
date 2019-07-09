@@ -1,7 +1,10 @@
 package ca.jrvs.apps.twitter;
 
 import ca.jrvs.apps.twitter.service.TwitterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TwitterCLIRunner {
 
   private static boolean LOCATION_FLAG;
@@ -9,11 +12,12 @@ public class TwitterCLIRunner {
   private static Double latitude;
   private static TwitterService service;
 
+  @Autowired
   public TwitterCLIRunner(TwitterService twitterService) {
     this.service = twitterService;
   }
 
-  public static void run(String[] args) {
+  public void run(String[] args) {
 
     if (args.length == 2) {
       LOCATION_FLAG = false;
@@ -36,25 +40,38 @@ public class TwitterCLIRunner {
         throw new IllegalArgumentException("Invalid geo location.");
       }
     } else {
-      throw new IllegalArgumentException("USAGE: Action Text (Location = Optional)");
+      throw new IllegalArgumentException("USAGE: TwitterCLI post|show|delete text [location]");
     }
 
     switch (args[0]) {
       case "post":
-        if (LOCATION_FLAG) {
-          service.postTweet(args[1], latitude, longitude);
-        } else {
-          service.postTweet(args[1], null, null);
-        }
+        postTweet(args);
         break;
       case "get":
-        service.showTweet(args[1], null);
+        showTweet(args);
         break;
       case "delete":
-        service.deleteTweets(args[1].split(","));
+        deleteTweet(args);
         break;
       case "default":
-        System.out.println("Invalid Action. Valid actions are post, get, or delete");
+        System.out.println("USAGE: TwitterCLI post|show|delete");
+        break;
     }
+  }
+
+  protected void postTweet(String[] args) {
+    if (LOCATION_FLAG) {
+      service.postTweet(args[1], latitude, longitude);
+    } else {
+      service.postTweet(args[1], null, null);
+    }
+  }
+
+  protected void showTweet(String[] args) {
+    service.showTweet(args[1], null);
+  }
+
+  protected void deleteTweet(String[] args) {
+    service.deleteTweets(args[1].split(","));
   }
 }

@@ -1,5 +1,9 @@
 package ca.jrvs.apps.twitter;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+
 import ca.jrvs.apps.twitter.dao.CrdDao;
 import ca.jrvs.apps.twitter.dao.TwitterRestDao;
 import ca.jrvs.apps.twitter.dao.helper.ApacheHttpHelper;
@@ -8,16 +12,15 @@ import ca.jrvs.apps.twitter.dto.Tweet;
 import ca.jrvs.apps.twitter.service.TwitterService;
 import ca.jrvs.apps.twitter.service.TwitterServiceImp;
 import ca.jrvs.apps.twitter.util.JsonUtil;
-import org.junit.*;
-import org.junit.runners.MethodSorters;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TwitterCLITest {
@@ -83,7 +86,7 @@ public class TwitterCLITest {
     String[] args3 = {"delete", tweet1.id};
     runner.run(args3);
 
-    assertThat(outContent.toString(), containsString("Deleted " + tweet1.id + " Successfully."));
+    assertThat(outContent.toString(), containsString("This is a test tweet"));
 
 
   }

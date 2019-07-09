@@ -5,7 +5,6 @@ import ca.jrvs.apps.twitter.dto.Entities;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import ca.jrvs.apps.twitter.util.JsonUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -62,7 +61,7 @@ public class TwitterServiceImp implements TwitterService {
         .map(dao::deleteById)
             .peek(t -> {
               try {
-                System.out.println(JsonUtil.toJsonFromObject(t, true, false));
+                System.out.println(JsonUtil.toJsonFromObject(t, true, true));
               } catch (JsonProcessingException e) {
                 System.out.println("Tweet could not be deleted.");
               }
