@@ -28,16 +28,15 @@ The following tasks are decoupled through interfaces:
  - Using the DAO's methods to conduct simple Twitter tasks (Twitter service).
 
 The app uses the Spring framework to construct the interface implementations (beans).
-### Usage: 
-Add the appropriate environment variables.  
-
-Windows Powershell: `.\windows_env_setup.ps1`
-
-Linux Terminal: 
-
-Compile the maven project: `mvn clean package`
-
-Navigate to the same directory as the jar file: /PROJECT_LOCATION/target  
+### Usage 
+#### Windows
+ - Start Windows PowerShell.  
+ - Navigate to the project folder and run the windows environment
+setup script: `windows_env_setup.ps1`
+ - Compile the maven project: `mvn clean package`
+ - Navigate to the same directory as the jar file.
+ 
+From here you can use the app by calling the jar file:  
 
 Post a tweet:
 ` java -jar TwitterCLI.jar post [text] `  
@@ -50,3 +49,26 @@ Get a tweet by id:
 
 Delete a tweet by id:
 `java -jar TwitterCLI.jar delete [id]`
+
+#### Linux
+Add a file for access tokens:  
+`touch ~/twitter_tokens.sh`
+
+Write the following in the file (replacing the placeholders):
+```
+export consumerKey="CONSUMER_KEY"
+export consumerSecret="CONSUMER_SECRET"
+export accessToken="ACCESS_TOKEN"
+export tokenSecret="TOKEN_SECRET"
+```
+Post a tweet:
+`twitter_app.sh post [text] `  
+
+Post a tweet with location:
+`twitter_app.sh post [text] [location]`  
+
+Get a tweet by id:
+`twitter_app.sh get [id]`  
+
+Delete a tweet by id:
+`twitter_app.sh delete [id]`
