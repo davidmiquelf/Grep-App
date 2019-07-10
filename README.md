@@ -29,11 +29,24 @@ The following tasks are decoupled through interfaces:
 
 The app uses the Spring framework to construct the interface implementations (beans).
 ### Usage: 
-#### Post a tweet
-TwitterCLI post [text]
-#### Post a tweet with location
-TwitterCLI post [text] [location]
-#### Get a tweet by id
-TwitterCLI get [id]
-#### Delete a tweet by id
-TwitterCLI delete [id]
+Add the appropriate environment variables.  
+
+Windows Powershell: `.\windows_env_setup.ps1`
+
+Linux Terminal: 
+
+Compile the maven project: `mvn clean package`
+
+Navigate to the same directory as the jar file: /PROJECT_LOCATION/target  
+
+Post a tweet:
+` java -jar TwitterCLI.jar post [text] `  
+
+Post a tweet with location:
+`java -jar TwitterCLI.jar post [text] [location]`  
+
+Get a tweet by id:
+`java -jar TwitterCLI.jar get [id]`  
+
+Delete a tweet by id:
+`java -jar TwitterCLI.jar delete [id]`

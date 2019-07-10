@@ -8,6 +8,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<configuration>
 					<executable>true</executable>
+					<finalName>TwitterCLI</finalName>
 				</configuration>
 			</plugin>
 		</plugins>
