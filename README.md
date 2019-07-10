@@ -20,4 +20,20 @@ is especially useful in larger apps where many components could want database ac
 databses could be providing similar information.
 ## Twitter API App
 A command line app that can get, post, or delete tweets. Twitter's API is RESTful so the app
-simply has to create, send, and recieve HTTP messages.
+simply has to create, send, and receive HTTP messages.  
+
+The following tasks are decoupled through interfaces:
+ - Sending/Receiving HTTP requests (HttpHelper).
+ - Building and Parsing Twitter API calls (CrdDao).
+ - Using the DAO's methods to conduct simple Twitter tasks (Twitter service).
+
+The app uses the Spring framework to construct the interface implementations (beans).
+### Usage: 
+#### Post a tweet
+TwitterCLI post [text]
+#### Post a tweet with location
+TwitterCLI post [text] [location]
+#### Get a tweet by id
+TwitterCLI get [id]
+#### Delete a tweet by id
+TwitterCLI delete [id]
