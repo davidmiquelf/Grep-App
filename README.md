@@ -14,3 +14,10 @@ to process each line as it is being read. That way only the matched lines have t
 Better yet, each matched line could be asynchronously written to the output file. That way,
 no running time is lost waiting for writes to complete, and total memory usage is minimized.
 ## JDBC
+An exercise in using DAOs and DTOs. For each table in a database there is a DAO and a DTO.
+The DAO accesses the database, and converts each row found into a DTO. This design pattern
+is especially useful in larger apps where many components could want database access and/or many
+databses could be providing similar information.
+## Twitter API App
+A command line app that can get, post, or delete tweets. Twitter's API is RESTful so the app
+simply has to create, send, and recieve HTTP messages.
