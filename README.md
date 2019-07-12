@@ -74,3 +74,9 @@ Get a tweet by id:
 
 Delete a tweet by id:
 `twitter_app.sh delete [id]`
+
+### Possible Improvements
+Ability to search for tweets by username, keywords, hashtags.. etc.  
+Make interactive so that the app doesnt need to boot every time you want to read a tweet.  
+Also interactive mode can ask user for access tokens if they are missing or invalid, and
+then save them in an appropriate spot.
