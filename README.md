@@ -61,6 +61,9 @@ export consumerSecret="CONSUMER_SECRET"
 export accessToken="ACCESS_TOKEN"
 export tokenSecret="TOKEN_SECRET"
 ```
+Navigate to the project directory and package the app with maven:  
+`mvn package -D"maven.test.skip=true"`
+
 Post a tweet:
 `twitter_app.sh post [text] `  
 
