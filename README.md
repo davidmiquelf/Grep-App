@@ -1,5 +1,3 @@
-# Jarvis Boot-Camp Java Applications
-This is a Maven project consisting of several Java Packages made over the course of my Jarvis boot-camp.
 ## Grep
 Simple grep app that emulates a simple grep search. Searches files in the given directory,
 and tries to find any lines that match the regular expression. Writes matched lines in
