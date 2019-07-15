@@ -12,30 +12,30 @@ The app uses the Spring framework to construct the interface implementations (be
 #### Windows
  - Start Windows PowerShell.  
  - Navigate to the project folder and edit the windows environment script. Input your Twitter API access tokens/secrets.  
-  `> notepad windows_env_setup.ps1`
+  `notepad windows_env_setup.ps1`
  - Run the script.  
-  `> .\windows_env_setup.ps1`
+  `.\windows_env_setup.ps1`
  - Compile the maven project -- can skip tests to speed up the process:  
-  `> mvn package -D"maven.test.skip=true"`
+  `mvn package -D"maven.test.skip=true"`
  - Navigate to the same directory as the jar file.
  
 From here you can use the app by calling the jar file:  
 
-Post a tweet:
-`> java -jar TwitterCLI.jar post [text] `  
+Post a tweet:  
+`java -jar TwitterCLI.jar post [text] `  
 
-Post a tweet with location:
-`> java -jar TwitterCLI.jar post [text] [location]`  
+Post a tweet with location:  
+`java -jar TwitterCLI.jar post [text] [location]`  
 
-Get a tweet by id:
-`> java -jar TwitterCLI.jar get [id]`  
+Get a tweet by id:  
+`java -jar TwitterCLI.jar get [id]`  
 
-Delete a tweet by id:
-`> java -jar TwitterCLI.jar delete [id]`
+Delete a tweet by id:  
+`java -jar TwitterCLI.jar delete [id]`  
 
 #### Linux
 Add a file for access tokens:  
-`> touch ~/twitter_tokens.sh`
+`touch ~/twitter_tokens.sh`
 
 Write the following in the file (replacing the placeholders):
 ```
@@ -45,19 +45,19 @@ export accessToken="ACCESS_TOKEN"
 export tokenSecret="TOKEN_SECRET"
 ```
 Navigate to the project directory and package the app with maven:  
-`> mvn package -D"maven.test.skip=true"`
+`mvn package -D"maven.test.skip=true"`
 
-Post a tweet:
-`> twitter_app.sh post [text] `  
+Post a tweet:  
+`twitter_app.sh post [text] `  
 
-Post a tweet with location:
-`> twitter_app.sh post [text] [location]`  
+Post a tweet with location:  
+`twitter_app.sh post [text] [location]`  
 
-Get a tweet by id:
-`> twitter_app.sh get [id]`  
+Get a tweet by id:  
+`twitter_app.sh get [id]`  
 
-Delete a tweet by id:
-`> twitter_app.sh delete [id]`
+Delete a tweet by id:  
+`twitter_app.sh delete [id]`
 
 ### Possible Improvements
 Ability to search for tweets by username, keywords, hashtags.. etc.  
