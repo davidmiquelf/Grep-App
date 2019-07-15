@@ -13,9 +13,9 @@ The app uses the Spring framework to construct the interface implementations (be
  - Start Windows PowerShell.  
  - Navigate to the project folder and edit the windows environment script. Input your Twitter API access tokens/secrets.  
   `> notepad windows_env_setup.ps1`
- - Run the script.
+ - Run the script.  
   `> .\windows_env_setup.ps1`
- - Compile the maven project -- skip tests as they will not work without environment variables:  
+ - Compile the maven project -- can skip tests to speed up the process:  
   `> mvn package -D"maven.test.skip=true"`
  - Navigate to the same directory as the jar file.
  
