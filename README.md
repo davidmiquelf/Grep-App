@@ -22,20 +22,20 @@ The app uses the Spring framework to construct the interface implementations (be
 From here you can use the app by calling the jar file:  
 
 Post a tweet:
-` java -jar TwitterCLI.jar post [text] `  
+`> java -jar TwitterCLI.jar post [text] `  
 
 Post a tweet with location:
-`java -jar TwitterCLI.jar post [text] [location]`  
+`> java -jar TwitterCLI.jar post [text] [location]`  
 
 Get a tweet by id:
-`java -jar TwitterCLI.jar get [id]`  
+`> java -jar TwitterCLI.jar get [id]`  
 
 Delete a tweet by id:
-`java -jar TwitterCLI.jar delete [id]`
+`> java -jar TwitterCLI.jar delete [id]`
 
 #### Linux
 Add a file for access tokens:  
-`touch ~/twitter_tokens.sh`
+`> touch ~/twitter_tokens.sh`
 
 Write the following in the file (replacing the placeholders):
 ```
@@ -45,19 +45,19 @@ export accessToken="ACCESS_TOKEN"
 export tokenSecret="TOKEN_SECRET"
 ```
 Navigate to the project directory and package the app with maven:  
-`mvn package -D"maven.test.skip=true"`
+`> mvn package -D"maven.test.skip=true"`
 
 Post a tweet:
-`twitter_app.sh post [text] `  
+`> twitter_app.sh post [text] `  
 
 Post a tweet with location:
-`twitter_app.sh post [text] [location]`  
+`> twitter_app.sh post [text] [location]`  
 
 Get a tweet by id:
-`twitter_app.sh get [id]`  
+`> twitter_app.sh get [id]`  
 
 Delete a tweet by id:
-`twitter_app.sh delete [id]`
+`> twitter_app.sh delete [id]`
 
 ### Possible Improvements
 Ability to search for tweets by username, keywords, hashtags.. etc.  
