@@ -14,7 +14,7 @@ public class TwitterCLIRunner {
 
   @Autowired
   public TwitterCLIRunner(TwitterService twitterService) {
-    this.service = twitterService;
+    service = twitterService;
   }
 
   public void run(String[] args) {
