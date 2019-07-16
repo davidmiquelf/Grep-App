@@ -1,3 +1,13 @@
+- [Twitter API App](#twitter-api-app)
+  * [Usage](#usage)
+    + [Windows](#windows)
+    + [Linux](#linux)
+  * [Possible Improvements](#possible-improvements)
+- [Grep](#grep)
+  * [Usage: Grep [regex] [rootPath] [outFile]](#usage--grep--regex---rootpath---outfile-)
+  * [Possible Improvements](#possible-improvements-1)
+- [JDBC](#jdbc)
+
 ## Twitter API App
 A command line app that can get, post, or delete tweets. Twitter's API is RESTful so the app
 simply has to create, send, and receive HTTP messages.  
