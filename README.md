@@ -4,11 +4,11 @@
     + [1.2.1 Windows](#121-windows)
     + [1.2.2 Linux](#122-linux)
   * [1.3 Possible Improvements](#13-possible-improvements)
-- [2 Grep](#2-grep)
+- [2. Grep](#2-grep)
   * [2.1 Design and implementation](#21-design-and-implementation)
   * [2.2 Usage](#22-usage)
   * [2.3 Possible Improvements](#23-possible-improvements)
-- [3 JDBC](#3-jdbc)
+- [3. JDBC](#3-jdbc)
 
 ## 1. Twitter API App
 A command line app that can get, post, or delete tweets. Twitter's API is RESTful so the app
@@ -20,6 +20,8 @@ The following tasks are decoupled through interfaces:
  - Sending/Receiving HTTP requests (HttpHelper).
  - Building and Parsing Twitter API calls (CrdDao).
  - Using the DAO's methods to conduct simple Twitter tasks (Twitter service).
+ 
+ ![Twitter App Architecture Diagram](https://github.com/davidmiquelf/Java-Applications/blob/master/Twitter_Diagram.png)
 
 The app uses the Spring framework to construct the interface implementations (beans).
 ### 1.2. Usage 
@@ -89,7 +91,7 @@ Interface functions:
  - readLines(File inputFile)
  - containsPattern(String line)
 
-The arguements passed to the JavaGrepImp constructor, then the process function uses the function implementations to run the desired Grep actions.
+The arguements are passed to the JavaGrepImp constructor, then the process function uses the function implementations to run the desired Grep actions.
  
 ### 2.2. Usage
 `Grep [regex] [rootPath] [outFile]`  
@@ -106,4 +108,6 @@ An exercise in using DAOs and DTOs. For each table in a database there is a DAO 
 The DAO accesses the database, and converts each row found into a DTO. This design pattern
 is especially useful in larger apps where many components could want database access and/or many
 databses could be providing similar information.
+
+ ![Architecture Diagram](https://github.com/davidmiquelf/Java-Applications/blob/master/JDBC_diagram.png)
 
