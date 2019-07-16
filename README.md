@@ -4,7 +4,7 @@
     + [Linux](#linux)
   * [Possible Improvements](#possible-improvements)
 - [Grep](#grep)
-  * [Usage](#usage)
+  * [Usage](#usage-1)
   * [Possible Improvements](#possible-improvements-1)
 - [JDBC](#jdbc)
 
