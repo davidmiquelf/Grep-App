@@ -4,7 +4,7 @@
     + [Linux](#linux)
   * [Possible Improvements](#possible-improvements)
 - [Grep](#grep)
-  * [Usage: Grep [regex] [rootPath] [outFile]](#usage--grep--regex---rootpath---outfile-)
+  * [Usage](#usage)
   * [Possible Improvements](#possible-improvements-1)
 - [JDBC](#jdbc)
 
@@ -78,7 +78,8 @@ then save them in an appropriate spot.
 Simple grep app that emulates a simple grep search. Searches files in the given directory,
 and tries to find any lines that match the regular expression. Writes matched lines in
 an output file.
-### Usage: Grep [regex] [rootPath] [outFile]
+### Usage
+`Grep [regex] [rootPath] [outFile]`  
  regex: Regular expression  
  rootPath: The path of the directory being searched.  
  outFile: The file where the matched lines are written.
