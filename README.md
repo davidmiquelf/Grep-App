@@ -109,5 +109,5 @@ The DAO accesses the database, and converts each row found into a DTO. This desi
 is especially useful in larger apps where many components could want database access and/or many
 databses could be providing similar information.
 
- ![Architecture Diagram](https://github.com/davidmiquelf/Java-Applications/blob/master/JDBC_diagram.png)
+ ![Architecture Diagram](https://github.com/davidmiquelf/Java-Applications/blob/master/JDBC_Diagram.png)
 
