@@ -85,6 +85,8 @@ Simple grep app that emulates a simple grep search. Searches files in the given 
 and tries to find any lines that match the regular expression. Writes matched lines in
 an output file.
 ### 2.1. Design and implementation
+Implemented the following interface:
+
 Interface functions:  
  - process()  
  - listFiles(String rootDir)
