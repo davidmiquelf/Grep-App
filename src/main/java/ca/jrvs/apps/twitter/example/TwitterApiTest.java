@@ -12,10 +12,10 @@ import org.apache.http.util.EntityUtils;
 
 public class TwitterApiTest {
 
-  private static String CONSUMER_KEY = "COylz9pKLIxb1jT2ktViQfbNw";
-  private static String CONSUMER_SECRET = "4jwFcnXd1aodWALIDxKnBVhpLTX1sLZ796PUtVlD1ENx9xcKgE";
-  private static String ACCESS_TOKEN = "1094024554438164480-DBJhcq0v7svOZ8d2mAgNo5c7BQa1ne";
-  private static String TOKEN_SECRET = "KbBXNolx2SaJHiSIfAT5QTpEzRMQ1fpQoIFFNtBG8ZW3R";
+  private static String CONSUMER_KEY = "";
+  private static String CONSUMER_SECRET = "";
+  private static String ACCESS_TOKEN = "";
+  private static String TOKEN_SECRET = "";
 
   public static void main(String[] args) throws
       Exception {
