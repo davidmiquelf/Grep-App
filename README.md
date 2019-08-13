@@ -21,7 +21,7 @@ The following tasks are decoupled through interfaces:
  - Building and Parsing Twitter API calls (CrdDao).
  - Using the DAO's methods to conduct simple Twitter tasks (Twitter service).
  
- ![Twitter App Architecture Diagram](https://github.com/davidmiquelf/Java-Applications/blob/master/Twitter_Diagram.png)
+ ![Twitter App Architecture Diagram](/assets/Twitter_Diagram.png)
 
 The app uses the Spring framework to construct the interface implementations (beans).
 ### 1.2. Usage 
@@ -111,5 +111,5 @@ The DAO accesses the database, and converts each row found into a DTO. This desi
 is especially useful in larger apps where many components could want database access and/or many
 databses could be providing similar information.
 
- ![Architecture Diagram](https://github.com/davidmiquelf/Java-Applications/blob/master/JDBC_Diagram.png)
+ ![Architecture Diagram](/assets/JDBC_Diagram.png)
 
